@@ -1,4 +1,3 @@
-import json
 import subprocess
 from fractions import Fraction
 from pathlib import Path
@@ -24,7 +23,6 @@ def browse_file():
     )
 
     root.destroy()
-
     return file_path
 
 
@@ -56,7 +54,7 @@ def extract_frames(file_path):
     
     frames = (
         ffmpeg.input(file_path)
-        .output(str(output_dir / "frame_%06d.png"))
+        .output(str(output_dir / "frame_%06d.png"), compression_level=1)
         .overwrite_output()
         .global_args("-progress", "pipe:1", "-nostats", "-loglevel", "quiet")
     )
