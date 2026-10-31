@@ -1,7 +1,5 @@
-from data import video
+from pipeline import run_pipeline
 
-frames = video.browse_file()
-path = video.extract_frames(frames)
-
-print(path)
+if __name__ == "main":
+    run_pipeline()
 
