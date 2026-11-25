@@ -1,13 +1,12 @@
-from data.sfm import reconstruct
-from data.video import browse_file, extract_frames
+from preprocessing.image_loader import load_images, sort_images
+from preprocessing.image_processing import extract_exif_metadata
 
 
 def run_pipeline():
-    video_path = browse_file()
-    if not video_path:
-        return None
+    image_directory = input("Image directory: ")
+    images = load_images(image_directory)
+    sorted_images = sort_images(images)
 
-    frames_dir = extract_frames(video_path)
-    colmap_reconstruction = reconstruct(frames_dir)
+    metadata = extract_exif_metadata(sorted_images)
 
-    return colmap_reconstruction
+    
